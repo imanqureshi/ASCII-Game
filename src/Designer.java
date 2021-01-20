@@ -1,12 +1,12 @@
 
-public class Artist {
+public class Designer {
 	private String name;;
 	
-	public Artist() {
+	public Designer() {
 		name = "Default Artist" ;
 	}
 	
-	public Artist(String n) {
+	public Designer(String n) {
 		name  = n;
 	}
 

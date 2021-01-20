@@ -1,4 +1,9 @@
-
+/**
+ * Iman Qureshi
+ * Jan 26 2021
+ * ICS4U
+ * This program outlines the properties of a general tool object
+ */
 public abstract class Tools {
 	private String name;
 	private String function;
@@ -48,12 +53,6 @@ public abstract class Tools {
 	/**
 	 * defines the sound behaviour all tools have.
 	 */
-	abstract String functionSound();
-	
-	public String toString() {
-		String info;
-		info = "Tool: " + name + "\nFunction: " + function;
-		return info;
-	}
+	abstract String toolSound();
 	
 }
