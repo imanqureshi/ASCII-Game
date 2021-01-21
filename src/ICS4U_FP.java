@@ -9,6 +9,9 @@ public class ICS4U_FP {
 		char[][] artBoard = new char[12][14];
 		Designer player;
 		int choice;
+		FlipperTool ft = new FlipperTool("Flipper Tool", "flips image upside down!");
+		SwapperTool st = new SwapperTool("Swapper Tool", "swaps a single character in image with another!");
+		
 
 		System.out
 				.println("Welcome to Graphics Jam!\nExplore your graphic designing talents in this music based game!");
@@ -30,7 +33,7 @@ public class ICS4U_FP {
 			}
 		}
 		readFile(doodle, artBoard);
-
+		
 		System.out.println(
 				"\nShown above is the image that needs redesigning! Use the tools below to revamp this design.");
 
@@ -41,19 +44,14 @@ public class ICS4U_FP {
 		while (choice != 8) {
 			if (choice == 1) {
 				System.out.println("Working the Flipper Tool...");
-				FlipperTool ft = new FlipperTool("Flipper Tool", "flips image upside down!");
 				ft.verticalFlip(artBoard);
-				writeFile(doodle,artBoard);
-				readFile(doodle, artBoard);
 				System.out.println(ft.toString());
 			} else if (choice == 2) {
-				FlipperTool ft = new FlipperTool("Flipper Tool", "flips image horizontally!");
 				ft.horizontalFlip(artBoard);
-				writeFile(doodle,artBoard);
-				readFile(doodle, artBoard);
 				System.out.println(ft.toString());
 			} else if (choice == 3) {
-				
+				st.SingleSwap(artBoard);
+				System.out.println(st.toString());
 			} else if (choice == 4) {
 
 			} else if (choice == 5) {
@@ -61,8 +59,11 @@ public class ICS4U_FP {
 			} else if (choice == 6) {
 
 			} else if (choice == 7) {
-				
 			}
+			
+			writeFile(doodle, artBoard);
+			System.out.println();
+			readFile(doodle, artBoard);
 			optionsDisplay();
 			System.out.println("Enter a Choice Number: ");
 			choice = input.nextInt();

@@ -1,61 +1,51 @@
-import java.io.*;
-
 public class FlipperTool extends Tools {
 
-	/*constructor*/
+	/* constructor */
 	public FlipperTool(String ftname, String func) {
 		super(ftname, func);
 	}
-	
+
 	/**
-	 * returns special sound made by using flipper tool
-	 * pre: none
-	 * post: sound of tool (lyric) is returned 
+	 * returns special sound made by using flipper tool pre: none post: sound of
+	 * tool (lyric) is returned
 	 */
 	String toolSound() {
 		return "I just flipped the switch...Flip Flip";
 	}
 
 	/**
-	 * vertically flips image
-	 * pre: 2D array must exist
-	 * post: 2D array is flipped upside down.
+	 * vertically flips image pre: 2D array must exist post: 2D array is flipped
+	 * upside down.
 	 */
-	public void verticalFlip(char[][] arr) {
-		char[][] temp = new char[arr.length][arr[0].length];
-
-		for (int i = arr.length - 1; i >= 0; i--) {
-			System.out.print("\n");
-			for (int j = arr[i].length - 1; j >= 0; j--) {
-				temp[i][j] = arr[i][j];
+	public char[][] verticalFlip(char[][] arr) {
+		for (int j = 0; j < arr[0].length; j++) {
+			for (int i = 0; i < arr.length / 2; i++) {
+				char temp = arr[i][j];
+				arr[i][j] = arr[arr.length - i - 1][j];
+				arr[arr.length - i - 1][j] = temp;
 			}
 		}
+		return arr;
 	}
-	
+
 	/**
-	 * horizontally flips image
-	 * pre: 2D array must exist
-	 * post: 2D array is flipped horizontally
+	 * horizontally flips image pre: 2D array must exist post: 2D array is flipped
+	 * horizontally
 	 */
-	public void horizontalFlip(char[][] arr) {
+	public char[][] horizontalFlip(char[][] arr) {
 		for (int i = 0; i < arr.length; i++) {
-			int start = 0;
-			int end = arr.length - 1;
-			while (start < end) { // while start < end, we swap the elements
-				// Swap the element
-				char temp = arr[i][start];
-				arr[i][start] = arr[i][end];
-				arr[i][end] = temp;
-				start++;
-				end--;
+			for (int j = 0; j < arr[i].length / 2; j++) {
+				char temp = arr[i][j];
+				arr[i][j] = arr[i][arr[i].length - j - 1];
+				arr[i][arr[i].length - j - 1] = temp;
 			}
 		}
+		return arr;
 	}
 
 	/**
-	 * prints information about flipper tool
-	 * pre: none
-	 * post: flipper tool info is returned.
+	 * prints information about flipper tool pre: none post: flipper tool info is
+	 * returned.
 	 */
 	public String toString() {
 		String info;
