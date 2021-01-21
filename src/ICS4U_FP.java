@@ -9,8 +9,8 @@ public class ICS4U_FP {
 		char[][] artBoard = new char[12][14];
 		Designer player;
 		int choice;
-		FlipperTool ft = new FlipperTool("Flipper Tool", "flips image upside down!");
-		SwapperTool st = new SwapperTool("Swapper Tool", "swaps a single character in image with another!");
+		FlipperTool ft = new FlipperTool("Flipper Tool", "flipped image upside down!");
+		SwapperTool st = new SwapperTool("Swapper Tool", "swapped a single character in image with another!");
 		
 
 		System.out
@@ -18,7 +18,7 @@ public class ICS4U_FP {
 		System.out.println("\nPlease enter your designer name: ");
 		player = new Designer(input.next());
 
-		System.out.println("\nExcellent! Let's get designing!");
+		System.out.println("\nExcellent! Let's get designing!\n");
 
 		/* create a new file for Image */ // have to add image into text file
 		if (!doodle.exists()) {
@@ -53,7 +53,8 @@ public class ICS4U_FP {
 				st.SingleSwap(artBoard);
 				System.out.println(st.toString());
 			} else if (choice == 4) {
-
+				st.fullSwap(artBoard);
+				System.out.println(st.toString());
 			} else if (choice == 5) {
 
 			} else if (choice == 6) {
@@ -108,7 +109,6 @@ public class ICS4U_FP {
 	public static void writeFile(File file, char[][] arr) {
 		FileWriter writer;
 		BufferedWriter bw;
-
 		if (file.exists()) {
 			try {
 				writer = new FileWriter(file);
@@ -146,12 +146,14 @@ public class ICS4U_FP {
 		System.out.println("\n****ARTIST TOOLS****\n" 
 				+ "1. Flipper Tool (Flips Image upside down!)\n"
 				+ "2. Flipper Tool (Flip Image Horizontally!)\n"
-				+ "3. Single Swapper Tool (Swap a character in file with character of your choice!\n"
-				+ "4. Full Swapper Tool(Swap all locations of a character in file with character of your choice!\n"
-				+ "5. Sort Tools Alphabetically\n"
-				+ "6. Eraser Tool\n"
-				+ "7. Reset Image\n" 
-				+ "8. Quit\n");
+				+ "3. Single Swapper Tool (Swap a single character in image with another!)\n"
+				+ "4. Full Swapper Tool(Swap all locations of a character in the image with another!)\n"
+				+ "5. Replacer Tool (Replace a single character with characeter of your choice!)\n"
+				+ "6. Replacer Tool (Replace all locations of a character with a character of your choice!\n"
+				+ "7. Sort Tools Alphabetically\n"
+				+ "8. Eraser Tool (Erase a single character in image\n"
+				+ "9. Eraser Tool (Erase full image)\n" 
+				+ "10. Quit\n");
 
 	}
 }
