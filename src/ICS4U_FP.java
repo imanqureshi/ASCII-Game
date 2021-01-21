@@ -9,9 +9,10 @@ public class ICS4U_FP {
 		char[][] artBoard = new char[12][14];
 		Designer player;
 		int choice;
-		FlipperTool ft = new FlipperTool("Flipper Tool", "flipped image upside down!");
-		SwapperTool st = new SwapperTool("Swapper Tool", "swapped a single character in image with another!");
-		
+		FlipperTool ft = new FlipperTool("Flipper Tool", "flipped image!");
+		SwapperTool st = new SwapperTool("Swapper Tool", "swapped character(s) in image with another!");
+		ReplacerTool rt = new ReplacerTool("Replacer Tool", "replaced character(s) in image!");
+		EraserTool et = new EraserTool("Eraser Tool", "erased character(s) from image!");
 
 		System.out
 				.println("Welcome to Graphics Jam!\nExplore your graphic designing talents in this music based game!");
@@ -41,7 +42,7 @@ public class ICS4U_FP {
 		System.out.println("Enter a Choice Number: ");
 		choice = input.nextInt();
 
-		while (choice != 8) {
+		while (choice != 10) {
 			if (choice == 1) {
 				System.out.println("Working the Flipper Tool...");
 				ft.verticalFlip(artBoard);
@@ -56,12 +57,20 @@ public class ICS4U_FP {
 				st.fullSwap(artBoard);
 				System.out.println(st.toString());
 			} else if (choice == 5) {
-
+				rt.replaceSingle(artBoard);
+				System.out.println(rt.toString());
 			} else if (choice == 6) {
-
+				rt.replaceAll(artBoard);
+				System.out.println(rt.toString());
 			} else if (choice == 7) {
-			}
-			
+				et.eraseSingle(artBoard);
+				System.out.println(rt.toString());
+			} else if (choice == 8) {
+				et.eraseAll(artBoard);
+				System.out.println(et.toString());
+			} else if (choice == 9) {
+				
+			} 
 			writeFile(doodle, artBoard);
 			System.out.println();
 			readFile(doodle, artBoard);
@@ -70,7 +79,7 @@ public class ICS4U_FP {
 			choice = input.nextInt();
 		}
 
-		if (choice == 8) {
+		if (choice == 10) {
 			input.close();
 			System.out.println("Thanks for Playing! Here is your final design work!");
 			System.out.println(player.toString());
@@ -150,9 +159,9 @@ public class ICS4U_FP {
 				+ "4. Full Swapper Tool(Swap all locations of a character in the image with another!)\n"
 				+ "5. Replacer Tool (Replace a single character with characeter of your choice!)\n"
 				+ "6. Replacer Tool (Replace all locations of a character with a character of your choice!\n"
-				+ "7. Sort Tools Alphabetically\n"
-				+ "8. Eraser Tool (Erase a single character in image\n"
-				+ "9. Eraser Tool (Erase full image)\n" 
+				+ "7. Eraser Tool (Erase a single character in image\n"
+				+ "8. Eraser Tool (Erase full image)\n" 
+				+ "9. Sort Tools Alphabetically\n"
 				+ "10. Quit\n");
 
 	}

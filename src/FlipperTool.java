@@ -1,4 +1,4 @@
-public class FlipperTool extends Tools {
+public class FlipperTool extends Tool {
 
 	/* constructor */
 	public FlipperTool(String ftname, String func) {
@@ -41,16 +41,5 @@ public class FlipperTool extends Tools {
 			}
 		}
 		return arr;
-	}
-
-	/**
-	 * prints information about flipper tool pre: none post: flipper tool info is
-	 * returned.
-	 */
-	public String toString() {
-		String info;
-		info = "\nThe " + super.getName() + " " + super.getFunction();
-		info += "\n***** " + toolSound() + " *****\n";
-		return info;
 	}
 }

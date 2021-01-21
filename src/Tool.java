@@ -4,7 +4,7 @@
  * ICS4U
  * This program outlines the properties of a general tool object
  */
-public abstract class Tools {
+public abstract class Tool {
 	private String name;
 	private String function;
 	
@@ -13,7 +13,7 @@ public abstract class Tools {
 	 * pre: none
 	 * post: Tool is created with tool name and it's function
 	 */
-	public Tools(String tName, String func) {
+	public Tool(String tName, String func) {
 		name = tName;
 		function = func;
 	}
@@ -55,4 +55,17 @@ public abstract class Tools {
 	 */
 	abstract String toolSound();
 	
+	/**
+	 * prints information about tools
+	 * pre: none 
+	 * post:tool info is returned.
+	 */
+	public String toString() {
+		String info;
+		info = "\nThe " + getName() + " " + getFunction();
+		info += "\n*******************************************\n";
+		info +=  toolSound();
+		info += "\n*******************************************\n";
+		return info;
+	}
 }

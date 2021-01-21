@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class SwapperTool extends Tools {
+public class SwapperTool extends Tool {
 
 	/* constructor */
 	public SwapperTool(String stname, String func) {
@@ -19,7 +19,7 @@ public class SwapperTool extends Tools {
 	 * writes upside down image onto created text file pre: contents of 2D array
 	 * must be strings only post: 2D array is written to file
 	 */
-	public void fullSwap(char[][] arr) {
+	public char[][] fullSwap(char[][] arr) {
 		Scanner input = new Scanner(System.in);
 		char char1;
 		char char2;
@@ -39,6 +39,7 @@ public class SwapperTool extends Tools {
 					}
 				}
 			}
+		return arr;
 		}
 
 //	public boolean charSearch(char[][] arr, int row, char c) {
@@ -76,12 +77,5 @@ public class SwapperTool extends Tools {
 		arr[row1-1][col1-1] = arr[row2-1][col2-1];
 		arr[row2-1][col2-1] = temp;
 		return arr;
-	}
-
-	public String toString() {
-		String info;
-		info = "\nThe " + super.getName() + " " + super.getFunction();
-		info += "\n***** " + toolSound() + " *****\n";
-		return info;
 	}
 }
