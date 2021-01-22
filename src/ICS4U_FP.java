@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class ICS4U_FP {
 
@@ -34,7 +34,7 @@ public class ICS4U_FP {
 			}
 		}
 		readFile(doodle, artBoard);
-		
+
 		System.out.println(
 				"\nShown above is the image that needs redesigning! Use the tools below to revamp this design.");
 
@@ -42,35 +42,55 @@ public class ICS4U_FP {
 		System.out.println("Enter a Choice Number: ");
 		choice = input.nextInt();
 
-		while (choice != 10) {
+		while (choice != 0) {
 			if (choice == 1) {
-				System.out.println("Working the Flipper Tool...");
-				ft.verticalFlip(artBoard);
-				System.out.println(ft.toString());
+				System.out.println("\n1. Flip Upside Down\n2. Flip Sides\n0. <- Back\n\nEnter Choice: ");
+				choice = input.nextInt();
+				if (choice == 1) {
+					ft.verticalFlip(artBoard);
+					System.out.println(ft.toString());
+				} else if (choice == 2) {
+					ft.horizontalFlip(artBoard);
+					System.out.println(ft.toString());
+				} 
 			} else if (choice == 2) {
-				ft.horizontalFlip(artBoard);
-				System.out.println(ft.toString());
+				System.out.println("\n1. Swap Single Locations\n2. Swap All Locations\n0. <- Back\n\nEnter Choice: ");
+				choice = input.nextInt();
+				if (choice == 1) {
+					st.SingleSwap(artBoard);
+					System.out.println(st.toString());
+				} else if (choice == 2) {
+					st.fullSwap(artBoard);
+					System.out.println(st.toString());
+				} 
 			} else if (choice == 3) {
-				st.SingleSwap(artBoard);
-				System.out.println(st.toString());
+				System.out.println("\n1. Replace Single Locations\n2. Replace All Locations\n0. <- Back\n\nEnter Choice: ");
+				choice = input.nextInt();
+				if (choice == 1) {
+					rt.replaceSingle(artBoard);
+					System.out.println(rt.toString());
+				} else if (choice == 2) {
+					rt.replaceAll(artBoard);
+					System.out.println(rt.toString());
+				} else {
+				}
 			} else if (choice == 4) {
-				st.fullSwap(artBoard);
-				System.out.println(st.toString());
-			} else if (choice == 5) {
-				rt.replaceSingle(artBoard);
-				System.out.println(rt.toString());
+				System.out.println("\n1. Erase Single Character\n2. Erase Entire Image\n0. Back\n\nEnter Choice: ");
+				choice = input.nextInt();
+				if (choice == 1) {
+					et.eraseSingle(artBoard);
+					System.out.println(rt.toString());
+				} else if (choice == 2) {
+					et.eraseAll(artBoard);
+					System.out.println(rt.toString());
+				} else {
+				}
 			} else if (choice == 6) {
-				rt.replaceAll(artBoard);
-				System.out.println(rt.toString());
 			} else if (choice == 7) {
-				et.eraseSingle(artBoard);
-				System.out.println(rt.toString());
 			} else if (choice == 8) {
-				et.eraseAll(artBoard);
-				System.out.println(et.toString());
 			} else if (choice == 9) {
-				
-			} 
+			}
+			System.out.println("Returning to Main Menu...");
 			writeFile(doodle, artBoard);
 			System.out.println();
 			readFile(doodle, artBoard);
@@ -79,7 +99,7 @@ public class ICS4U_FP {
 			choice = input.nextInt();
 		}
 
-		if (choice == 10) {
+		if (choice == 0) {
 			input.close();
 			System.out.println("Thanks for Playing! Here is your final design work!");
 			System.out.println(player.toString());
@@ -114,7 +134,7 @@ public class ICS4U_FP {
 			}
 		}
 	}
-	
+
 	public static void writeFile(File file, char[][] arr) {
 		FileWriter writer;
 		BufferedWriter bw;
@@ -140,7 +160,12 @@ public class ICS4U_FP {
 	 * prints 2D array of the art txt file. pre:none. post: array is printed.
 	 */
 	public static void printArray(char[][] arr) {
+		System.out.println();
 		for (int i = 0; i < arr.length; i++) {
+			if (i < 9) {
+				System.out.print("R" + (i + 1) + ":  ");
+			} else
+				System.out.print("R" + (i + 1) + ": ");
 			for (int j = 0; j < arr[0].length; j++) {
 				System.out.print(arr[i][j]);
 			}
@@ -152,17 +177,12 @@ public class ICS4U_FP {
 	 * prints options display for user pre:none. post: array is printed.
 	 */
 	public static void optionsDisplay() {
-		System.out.println("\n****ARTIST TOOLS****\n" 
-				+ "1. Flipper Tool (Flips Image upside down!)\n"
-				+ "2. Flipper Tool (Flip Image Horizontally!)\n"
-				+ "3. Single Swapper Tool (Swap a single character in image with another!)\n"
-				+ "4. Full Swapper Tool(Swap all locations of a character in the image with another!)\n"
-				+ "5. Replacer Tool (Replace a single character with characeter of your choice!)\n"
-				+ "6. Replacer Tool (Replace all locations of a character with a character of your choice!\n"
-				+ "7. Eraser Tool (Erase a single character in image\n"
-				+ "8. Eraser Tool (Erase full image)\n" 
-				+ "9. Sort Tools Alphabetically\n"
-				+ "10. Quit\n");
+		System.out.println("\n****ARTIST TOOLS****\n" + "1. Flipper Tool (Flips Image upside down or on it's side!)"
+				+ "2. Swapper Tool (Swap character(s) with another!)\n"
+				+ "3. Replacer Tool (Replace character(s) with characeter of your choosing!)\n"
+				+ "4. Eraser Tool (Erase character(s) in image\n"
+				+ "5. Sorter Tool (Groups same characters in rows, columns, or enitre image!)"
+				+ "9. Sort Tools Alphabetically\n" + "0. Quit\n");
 
 	}
 }

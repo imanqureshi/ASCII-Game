@@ -54,6 +54,7 @@ public class SwapperTool extends Tool {
 //		}
 //		return check;
 //	}
+
 	public char[][] SingleSwap(char[][] arr) {
 		Scanner input = new Scanner(System.in);
 		int row1, row2, col1, col2;
