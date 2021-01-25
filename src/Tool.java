@@ -56,6 +56,24 @@ public abstract class Tool {
 	abstract String toolSound();
 	
 	/**
+	 * checks if a character exists in an array
+	 * pre: none
+	 * post: returns true if character exists. else, returns false. 
+	 */
+	public boolean charExists(char[][] arr, char c) {
+		boolean check = false;
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[0].length; j++) {
+				if (c == arr[i][j]) {
+					check = true;
+					break;
+				}
+			}
+		}
+		return check;
+	}
+
+	/**
 	 * prints information about tools
 	 * pre: none 
 	 * post:tool info is returned.
