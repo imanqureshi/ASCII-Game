@@ -5,6 +5,7 @@ import java.util.*;
 public class ICS4U_FP {
 
 	public static void main(String[] args) {
+		/*variable declaration*/
 		File doodle;
 		char[][] artBoard;
 		Designer player;
@@ -14,16 +15,17 @@ public class ICS4U_FP {
 		SwapperTool st = new SwapperTool("Swapper Tool", "Swap Character(s) within the Image");
 		ReplacerTool rt = new ReplacerTool("Replacer Tool", "Replace Character(s) in Image with any Character");
 		EraserTool et = new EraserTool("Eraser Tool", "Erase Character(s) in Image");
-		SorterTool sortt = new SorterTool("Sorter Tool", "Group Same Characters in Image");		
-		ArrayList<String> options = new ArrayList<String>();		
-		
+		SorterTool sortt = new SorterTool("Sorter Tool", "Group Same Characters in Image");
+		ArrayList<String> options = new ArrayList<String>();
+
 		System.out
 				.println("Welcome to Graphics Jam!\nExplore your graphic designing talents in this music based game!");
-		System.out.println("\nPlease enter your designer first name: ");		
+		System.out.println("\nPlease enter your designer first name: ");
 		player = new Designer(input.next());
 
 		System.out.println("\nHello, " + player.getName() + "! Let's get designing!\n");
-
+		
+		/*creating GraphicJam files to store art*/
 		System.out.println("1. Create my own Image\n2. Use default image\n\nEnter your Choice:");
 		choice = input.nextInt();
 		while (true) {
@@ -35,7 +37,7 @@ public class ICS4U_FP {
 			}
 		}
 		if (choice == 1) {
-			doodle = new File("././MyGraphicsJamBy" + player.getName());
+			doodle = new File("././My Graphics Jam -" + player.getName());
 			try {
 				doodle.createNewFile();
 			} catch (IOException e) {
@@ -56,14 +58,13 @@ public class ICS4U_FP {
 			writeFile(doodle, artBoard);
 		} else {
 			artBoard = new char[12][14];
-			
-			doodle = new File("././GraphicsJamBy" + player.getName());
+
+			doodle = new File("././Graphics Jam -" + player.getName());
 			File originalFile = new File("././GraphicsJamDefault");
-		
-			/* create a new file for Image */ 
+
 			if (!doodle.exists()) {
 				try {
-					Files.copy(originalFile.toPath(),doodle.toPath());
+					Files.copy(originalFile.toPath(), doodle.toPath());
 				} catch (IOException e) {
 					System.out.println("Oops! It seems like the default drawing is missing!");
 					System.err.print("IOException: " + e.getMessage());
@@ -75,33 +76,34 @@ public class ICS4U_FP {
 			}
 		}
 		System.out.println("\n*** GRAPHICS JAM! ***\n");
-		
+
 		readFile(doodle, artBoard);
 
 		System.out.println(
 				"\nShown above is the image that needs redesigning! Use the tools below to revamp this design.");
-
-		System.out.println("\n\t------- ARTIST TOOLS -------\n");
+		
 		options.add(ft.toString());
 		options.add(st.toString());
 		options.add(rt.toString());
 		options.add(et.toString());
 		options.add(sortt.toString());
 		options.add("Quit");
-		
+		System.out.println("\n\t------- ARTIST TOOLS -------\n");
 		optionsDisplay(options);
+		
 		System.out.println("Enter your Choice: ");
 		choice = input.nextInt();
 
+		/*options display controls*/
 		while (choice != options.size()) {
 			while (true) {
 				if (choice > 0 && choice < options.size() || choice == options.size()) {
 					break;
-				} 
-					System.out.println("Please enter a valid input.");
-					choice = input.nextInt();
+				}
+				System.out.println("Please enter a valid input.");
+				choice = input.nextInt();
 			}
-			if (choice == 1) {
+			if (choice == 1) {	//flipper tool
 				System.out.println("\n1. Flip Upside Down\n2. Flip Sides\n0. <- Back\n\nEnter your Choice: ");
 				choice = input.nextInt();
 				while (true) {
@@ -112,17 +114,17 @@ public class ICS4U_FP {
 						choice = input.nextInt();
 					}
 				}
-					if (choice == 1) {
-						ft.verticalFlip(artBoard);
-						System.out.println(ft.toolSound());
-					} else if (choice == 2) {
-						ft.horizontalFlip(artBoard);
-						System.out.println(ft.toolSound());
-					}
-			} else if (choice == 2) {
+				if (choice == 1) {
+					ft.verticalFlip(artBoard);
+					System.out.println(ft.toolSound());
+				} else if (choice == 2) {
+					ft.horizontalFlip(artBoard);
+					System.out.println(ft.toolSound());
+				}
+			} else if (choice == 2) {	//swapper tool
 				while (true) {
-					System.out
-							.println("\n1. Swap Single Locations\n2. Swap All Locations\n0. <- Back\n\nEnter your Choice: ");
+					System.out.println(
+							"\n1. Swap Single Locations\n2. Swap All Locations\n0. <- Back\n\nEnter your Choice: ");
 					choice = input.nextInt();
 					if (choice == 1 || choice == 2 || choice == 0) {
 						break;
@@ -138,7 +140,7 @@ public class ICS4U_FP {
 					st.fullSwap(artBoard);
 					System.out.println(st.toolSound());
 				}
-			} else if (choice == 3) {
+			} else if (choice == 3) {		//replacer tool
 				System.out.println(
 						"\n1. Replace Single Locations\n2. Replace All Locations\n3. Replace a Row\n4. Replace a Column\n0. <- Back\n\nEnter your Choice: ");
 				choice = input.nextInt();
@@ -163,8 +165,9 @@ public class ICS4U_FP {
 					rt.replaceCol(artBoard);
 					System.out.println(rt.toolSound());
 				}
-			} else if (choice == 4) {
-				System.out.println("\n1. Erase Single Character\n2. Erase Entire Image\n3. Erase Entire Row\n4. Erase Entire Column\n0. <- Back\n\nEnter your Choice: ");
+			} else if (choice == 4) {		//eraser tool
+				System.out.println(
+						"\n1. Erase Single Character\n2. Erase Entire Image\n3. Erase Entire Row\n4. Erase Entire Column\n0. <- Back\n\nEnter your Choice: ");
 				choice = input.nextInt();
 				while (true) {
 					if (choice == 1 || choice == 2 || choice == 3 || choice == 4 || choice == 0) {
@@ -187,8 +190,9 @@ public class ICS4U_FP {
 					et.eraseCol(artBoard);
 					System.out.println(et.toolSound());
 				}
-			} else if (choice == 5) {
-				System.out.println("1. Sort a Row!\n2. Sort a Column!\n3. Sort all Rows!\n4. Sort all Columns!\n0. <- Back\n\nEnter your Choice:");
+			} else if (choice == 5) {		//sorter tool
+				System.out.println(
+						"1. Sort a Row!\n2. Sort a Column!\n3. Sort all Rows!\n4. Sort all Columns!\n0. <- Back\n\nEnter your Choice:");
 				choice = input.nextInt();
 				while (true) {
 					if (choice == 1 || choice == 2 || choice == 3 || choice == 4 || choice == 0) {
@@ -218,7 +222,7 @@ public class ICS4U_FP {
 			readFile(doodle, artBoard);
 			System.out.println("\n\t------- ARTIST TOOLS -------\n");
 			optionsDisplay(options);
-			System.out.println("Enter a Choice Number: ");
+			System.out.println("Enter your Choice: ");
 			choice = input.nextInt();
 		}
 		if (choice == options.size()) {
@@ -231,8 +235,9 @@ public class ICS4U_FP {
 	}
 
 	/**
-	 * reads text file into a 2D array pre: file must only contain strings post:
-	 * contents of text file are stored into 2D array
+	 * reads text file into a 2D array 
+	 * pre: none 
+	 * post: contents of text file are stored into 2D array
 	 */
 	public static void readFile(File file, char[][] arr) {
 		FileReader reader;
@@ -243,9 +248,9 @@ public class ICS4U_FP {
 			try {
 				reader = new FileReader(file);
 				br = new BufferedReader(reader);
-				for (int i = 0; i < arr.length; i++) { 			// iterates through rows of array
-					strRows = br.readLine(); 					// reads each row as a string
-					arr[i] = strRows.toCharArray(); 			// converts string into char 2D array rows
+				for (int i = 0; i < arr.length; i++) { // iterates through rows of array
+					strRows = br.readLine(); // reads each row as a string
+					arr[i] = strRows.toCharArray(); // converts string into char 2D array rows
 				}
 				br.close();
 				reader.close();
@@ -256,7 +261,11 @@ public class ICS4U_FP {
 			}
 		}
 	}
-
+	/**
+	 * writes contents of a char array into a file
+	 * pre: none
+	 * post: file is overwritten with content from array 
+	 */
 	public static void writeFile(File file, char[][] arr) {
 		FileWriter writer;
 		BufferedWriter bw;
@@ -279,7 +288,9 @@ public class ICS4U_FP {
 	}
 
 	/**
-	 * prints 2D array of the art txt file. pre:none. post: array is printed.
+	 * prints 2D array of image from text file
+	 * pre: none
+	 * post: array is printed
 	 */
 	public static void printArray(char[][] arr) {
 		for (int i = 0; i < arr.length; i++) {
@@ -293,7 +304,12 @@ public class ICS4U_FP {
 			System.out.println();
 		}
 	}
-
+	/**
+	 * allows users to fill char array character by character 
+	 * pre: none
+	 * post: all incices of array are filled
+	 * 
+	 */
 	public static char[][] fillArray(char[][] arr, Scanner input) {
 		System.out.println("\nPlease fill each row, character by character:");
 		for (int i = 0; i < arr.length; i++) {
@@ -305,13 +321,16 @@ public class ICS4U_FP {
 		System.out.println("\nComplete!");
 		return arr;
 	}
+
 	/**
-	 * prints options display for user pre:none. post: array is printed.
+	 * prints options display for user 
+	 * pre:none
+	 * post: array is printed
 	 */
-	public static void optionsDisplay(ArrayList<String> options) {	
-		for(int i= 0; i < options.size(); i++) {
-			System.out.println("(" + (i+1) + ") " + options.get(i) + " ");
+	public static void optionsDisplay(ArrayList<String> options) {
+		for (int i = 0; i < options.size(); i++) {
+			System.out.println("(" + (i + 1) + ") " + options.get(i) + " ");
 		}
-		
+
 	}
 }

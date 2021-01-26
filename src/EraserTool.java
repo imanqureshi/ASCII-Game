@@ -9,7 +9,7 @@ public class EraserTool extends Tool {
 	String toolSound() {
 		String sound;
 		sound = "______________________________________________";
-		sound += "\n\nNow you're just an image that I used to know";
+		sound += "\n\nNow you're just an image that I used to know.";
 		sound += "\n______________________________________________";
 		return sound;
 	}
