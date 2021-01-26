@@ -75,8 +75,10 @@ public class SwapperTool extends Tool {
 			row1 = input.nextInt();
 		}
 		System.out.println("\nSelected row... ");
-		System.out.println(arr[row1 - 1]);
-		System.out.println("Enter the COLUMN of the Character You Would Like to Swap Character 1 With:");
+		for (int i = 0; i < arr[0].length; i++) {
+			System.out.print(arr[row1 - 1][i] + " ");
+		}
+		System.out.println("\nEnter the COLUMN of the Character You Would Like to Swap Character 1 With:");
 		col1 = input.nextInt();
 		while (true) {
 			if (col1 > 0 && col1 <= arr[0].length) {
@@ -98,8 +100,10 @@ public class SwapperTool extends Tool {
 			row2 = input.nextInt();
 		}
 		System.out.print("\nSelected Row... ");
-		System.out.println(arr[row2 - 1]);
-		System.out.println("Enter the COLUMN of the Character You Would Like to Swap Character 1 With:");
+		for (int i = 0; i < arr[0].length; i++) {
+			System.out.print(arr[row2 - 1][i] + " ");
+		}		
+		System.out.println("\nEnter the COLUMN of the Character You Would Like to Swap Character 1 With:");
 		col2 = input.nextInt();
 		while (true) {
 			if (col2 > 0 && col2 <= arr[0].length) {

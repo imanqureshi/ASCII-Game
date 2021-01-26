@@ -67,19 +67,35 @@ public class SorterTool extends Tool {
 			}
 		return arr;
 	}
-	public char[][] sortAll(char[][] arr) {
-
-		// loop for rows of matrix
-		for (int i = 0; i < arr.length; i++) {
-			// loop for column of matrix
-			for (int j = 0; j < arr[i].length; j++) {
-				// loop for comparison and swapping
-				for (int k = 0; k < arr[i].length - j - 1; k++) {
+	/**
+	 * bubble sort that sorts entire array based on the lowest to greatest ASCII value. 
+	 * pre: none
+	 * post: all rows are sorted 
+	 * 
+	 */
+	public char[][] sortAllRows(char[][] arr) {
+		for (int i = 0; i < arr.length; i++) { 	// loops through rows of array
+			for (int j = 0; j < arr[i].length; j++) { //loops column of array
+				for (int k = 0; k < arr[i].length - j - 1; k++) {	//loop to compare all elements
 					if (arr[i][k] > arr[i][k + 1]) {
-						// swapping of elements
-						char temp = arr[i][k];
+						char temp = arr[i][k];	//swapping
 						arr[i][k] = arr[i][k + 1];
 						arr[i][k + 1] = temp;
+					}
+				}
+			}
+		}
+		return arr;
+
+	}
+	public char[][] sortAllCols(char[][] arr) {
+		for (int i = 0; i < arr[0].length; i++) { 	// loops through rows of array
+			for (int j = 0; j < arr.length; j++) { //loops column of array
+				for (int k = 0; k < arr.length - j - 1; k++) {	//loop to compare all elements
+					if (arr[k+1][i] > arr[k][i]) {
+						char temp = arr[k][i];	//swapping
+						arr[k][i] = arr[k+1][i];
+						arr[k+1][i] = temp;
 					}
 				}
 			}

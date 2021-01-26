@@ -7,7 +7,7 @@ public class EraserTool extends Tool {
 	}
 
 	String toolSound() {
-		return "Now it's just an image that I used to know";
+		return "Now you're just an image that I used to know";
 	}
 	
 	public char[][] eraseSingle(char[][] arr) {
@@ -23,8 +23,11 @@ public class EraserTool extends Tool {
 				System.out.println("Please enter a valid Row.");
 			row = input.nextInt();
 		}
-		System.out.println(arr[row-1]);
-		System.out.println("Enter the COLUMN of the First Character You Would Like to Erase:");
+		System.out.print("\nSelected Row... ");
+		for (int i = 0; i < arr[0].length; i++) {
+			System.out.print(arr[row - 1][i] + " ");
+		}	
+		System.out.println("\nEnter the COLUMN of the First Character You Would Like to Erase:");
 		col = input.nextInt();
 		while (true) {
 			if (col > 0 && col <= arr[0].length) {
@@ -55,8 +58,10 @@ public class EraserTool extends Tool {
 			row = input.nextInt();
 		}
 		System.out.print("Row Chosen: ");
-		System.out.println(arr[row - 1]);
-
+		System.out.print("\nSelected Row... ");
+		for (int i = 0; i < arr[0].length; i++) {
+			System.out.print(arr[row - 1][i] + " ");
+		}	
 		for (int i = 0; i < arr[row - 1].length; i++) {
 			arr[row - 1][i] = ' ';
 		}

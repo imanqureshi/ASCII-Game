@@ -21,7 +21,7 @@ public class ICS4U_FP {
 
 		System.out.println("\nHello, " + player.getName() + "! Let's get designing!\n");
 
-		System.out.println("1. Create my own Image\n2. Use default image\n\nEnter choice");
+		System.out.println("1. Create my own Image\n2. Use default image\n\nEnter you Choice:");
 		choice = input.nextInt();
 		while (true) {
 			if (choice == 1 | choice == 2) {
@@ -174,10 +174,10 @@ public class ICS4U_FP {
 					System.out.println(et.toString());
 				}
 			} else if (choice == 5) {
-				System.out.println("1. Sort a Row!\n2. Sort a Column!\n3. Sort entire Image!\n0. <- Back\n\nEnter your Choice:");
+				System.out.println("1. Sort a Row!\n2. Sort a Column!\n3. Sort all Rows!\n4. Sort all Columns!\n0. <- Back\n\nEnter your Choice:");
 				choice = input.nextInt();
 				while (true) {
-					if (choice == 1 || choice == 2 || choice == 3 || choice == 0) {
+					if (choice == 1 || choice == 2 || choice == 3 || choice == 4 || choice == 0) {
 						break;
 					} else {
 						System.out.println("Please enter a valid input.");
@@ -191,7 +191,10 @@ public class ICS4U_FP {
 					sortt.sortCol(artBoard);
 					System.out.println(sortt.toString());
 				} else if (choice == 3) {
-					sortt.sortAll(artBoard);
+					sortt.sortAllRows(artBoard);
+					System.out.println(sortt.toString());
+				} else if (choice == 4) {
+					sortt.sortAllCols(artBoard);
 					System.out.println(sortt.toString());
 				}
 			}
@@ -264,7 +267,6 @@ public class ICS4U_FP {
 	 * prints 2D array of the art txt file. pre:none. post: array is printed.
 	 */
 	public static void printArray(char[][] arr) {
-		System.out.println();
 		for (int i = 0; i < arr.length; i++) {
 			if (i < 9) {
 				System.out.print("R" + (i + 1) + ":  ");
@@ -279,16 +281,12 @@ public class ICS4U_FP {
 
 	public static void fillArray(char[][] arr, Scanner input) {
 		for (int i = 0; i < arr.length; i++) {
-			System.out.println("\nFilling row: " + (i + 1));
+			System.out.println("\nFilling row: " + (i + 1) + "...");
 			for (int j = 0; j < arr[0].length; j++) {
 				arr[i][j] = input.next().charAt(0);
 			}
 		}
 		System.out.println("\nComplete!");
-	}
-
-	public static void fillDefault(char[][] arr) {
-
 	}
 
 	/**

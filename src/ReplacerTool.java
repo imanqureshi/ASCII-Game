@@ -6,6 +6,10 @@ public class ReplacerTool extends Tool {
 	public ReplacerTool(String rtname, String func) {
 		super(rtname, func);
 	}
+	
+	String toolSound() {
+		return "Believe...when I say...I want it replaced!";
+	}
 
 	public char[][] replaceSingle(char[][] arr) {
 		int row, col;
@@ -21,8 +25,11 @@ public class ReplacerTool extends Tool {
 				System.out.println("Please enter a valid Row.");
 			row = input.nextInt();
 		}
-		System.out.println(arr[row - 1]);
-		System.out.println("Enter the COLUMN of the First Character You Would Like to Swap:");
+		System.out.print("\nSelected Row... ");
+		for (int i = 0; i < arr[0].length; i++) {
+			System.out.print(arr[row - 1][i] + " ");
+		}	
+		System.out.println("\nEnter the COLUMN of the First Character You Would Like to Swap:");
 		col = input.nextInt();
 		while (true) {
 			if (col > 0 && col <= arr[0].length) {
@@ -98,9 +105,11 @@ public class ReplacerTool extends Tool {
 			row = input.nextInt();
 		}
 		System.out.print("Row Chosen: ");
-		System.out.println(arr[row - 1]);
+		for (int i = 0; i < arr[0].length; i++) {
+			System.out.print(arr[row - 1][i] + " ");
+		}	
 
-		System.out.println("What character You Would Like to place into the Image: ");
+		System.out.println("\nWhat character You Would Like to place into the Image: ");
 		replacement = input.next().charAt(0);
 
 		for (int i = 0; i < arr[row - 1].length; i++) {
@@ -136,8 +145,5 @@ public class ReplacerTool extends Tool {
 		return arr;
 	}
 
-	String toolSound() {
-		return "Believe...when I say...I want it replaced!";
-	}
 
 }
