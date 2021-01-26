@@ -7,7 +7,11 @@ public class EraserTool extends Tool {
 	}
 
 	String toolSound() {
-		return "Now you're just an image that I used to know";
+		String sound;
+		sound = "______________________________________________";
+		sound += "\n\nNow you're just an image that I used to know";
+		sound += "\n______________________________________________";
+		return sound;
 	}
 	
 	public char[][] eraseSingle(char[][] arr) {
@@ -23,7 +27,7 @@ public class EraserTool extends Tool {
 				System.out.println("Please enter a valid Row.");
 			row = input.nextInt();
 		}
-		System.out.print("\nSelected Row... ");
+		System.out.println("\nSelected Row... ");
 		for (int i = 0; i < arr[0].length; i++) {
 			System.out.print(arr[row - 1][i] + " ");
 		}	
@@ -57,8 +61,7 @@ public class EraserTool extends Tool {
 				System.out.println("Please enter a valid Row.");
 			row = input.nextInt();
 		}
-		System.out.print("Row Chosen: ");
-		System.out.print("\nSelected Row... ");
+		System.out.println("\nSelected Row... ");
 		for (int i = 0; i < arr[0].length; i++) {
 			System.out.print(arr[row - 1][i] + " ");
 		}	

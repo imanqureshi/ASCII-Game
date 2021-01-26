@@ -80,10 +80,7 @@ public abstract class Tool {
 	 */
 	public String toString() {
 		String info;
-		info = "\nThe " + getName() + " " + getFunction();
-		info += "\n*******************************************\n";
-		info +=  toolSound();
-		info += "\n*******************************************\n";
+		info = "The " + getName() + " (" + getFunction() + ")";
 		return info;
 	}
 }

@@ -1,27 +1,30 @@
 import java.io.*;
+import java.nio.file.Files;
 import java.util.*;
 
 public class ICS4U_FP {
 
 	public static void main(String[] args) {
 		File doodle;
-		Scanner input = new Scanner(System.in);
 		char[][] artBoard;
 		Designer player;
 		int choice;
-		FlipperTool ft = new FlipperTool("Flipper Tool", "flipped image!");
-		SwapperTool st = new SwapperTool("Swapper Tool", "swapped character(s) in image with another!");
-		ReplacerTool rt = new ReplacerTool("Replacer Tool", "replaced character(s) in image!");
-		EraserTool et = new EraserTool("Eraser Tool", "erased character(s) from image!");
-		SorterTool sortt = new SorterTool("Sorter Tool", "sorted and grouped same elements in the image!");
+		Scanner input = new Scanner(System.in);
+		FlipperTool ft = new FlipperTool("Flipper Tool", "Flip Image Upside Down or on it's Side");
+		SwapperTool st = new SwapperTool("Swapper Tool", "Swap Character(s) within the Image");
+		ReplacerTool rt = new ReplacerTool("Replacer Tool", "Replace Character(s) in Image with any Character");
+		EraserTool et = new EraserTool("Eraser Tool", "Erase Character(s) in Image");
+		SorterTool sortt = new SorterTool("Sorter Tool", "Group Same Characters in Image");		
+		ArrayList<String> options = new ArrayList<String>();		
+		
 		System.out
 				.println("Welcome to Graphics Jam!\nExplore your graphic designing talents in this music based game!");
-		System.out.println("\nPlease enter your designer name: ");
+		System.out.println("\nPlease enter your designer first name: ");		
 		player = new Designer(input.next());
 
 		System.out.println("\nHello, " + player.getName() + "! Let's get designing!\n");
 
-		System.out.println("1. Create my own Image\n2. Use default image\n\nEnter you Choice:");
+		System.out.println("1. Create my own Image\n2. Use default image\n\nEnter your Choice:");
 		choice = input.nextInt();
 		while (true) {
 			if (choice == 1 | choice == 2) {
@@ -32,12 +35,12 @@ public class ICS4U_FP {
 			}
 		}
 		if (choice == 1) {
-			doodle = new File("././GraphicsJam" + player.getName());
+			doodle = new File("././MyGraphicsJamBy" + player.getName());
 			try {
 				doodle.createNewFile();
-			} catch (IOException err) {
+			} catch (IOException e) {
 				System.out.println("File could not be created.");
-				System.err.println("IOException: " + err.getMessage());
+				System.err.println("IOException: " + e.getMessage());
 			} finally {
 				System.out.println("New Graphics Board being Created...\n");
 			}
@@ -51,22 +54,25 @@ public class ICS4U_FP {
 			System.out.println("Excellent! Let's create your image!");
 			fillArray(artBoard, input);
 			writeFile(doodle, artBoard);
-
 		} else {
 			artBoard = new char[12][14];
-			doodle = new File("././GraphicsJamDefault");
-			/* create a new file for Image */ // have to add image into text file
+			
+			doodle = new File("././GraphicsJamBy" + player.getName());
+			File originalFile = new File("././GraphicsJamDefault");
+		
+			/* create a new file for Image */ 
 			if (!doodle.exists()) {
 				try {
-					doodle.createNewFile();
-				} catch (IOException err) {
-					System.out.println("File could not be created.");
-					System.err.println("IOException: " + err.getMessage());
+					Files.copy(originalFile.toPath(),doodle.toPath());
+				} catch (IOException e) {
+					System.out.println("Oops! It seems like the default drawing is missing!");
+					System.err.print("IOException: " + e.getMessage());
 				} finally {
-					System.out.println("Preparing Default Image...");
+					System.out.println("Excellent! Let's get to Work!");
 				}
+			} else {
+				System.out.println("Looks like you've already created an art piece! Let's load it up!");
 			}
-//			fillDefault(artBoard);
 		}
 		System.out.println("\n*** GRAPHICS JAM! ***\n");
 		
@@ -75,17 +81,25 @@ public class ICS4U_FP {
 		System.out.println(
 				"\nShown above is the image that needs redesigning! Use the tools below to revamp this design.");
 
-		optionsDisplay();
-		System.out.println("Enter a Choice Number: ");
+		System.out.println("\n\t------- ARTIST TOOLS -------\n");
+		options.add(ft.toString());
+		options.add(st.toString());
+		options.add(rt.toString());
+		options.add(et.toString());
+		options.add(sortt.toString());
+		options.add("Quit");
+		
+		optionsDisplay(options);
+		System.out.println("Enter your Choice: ");
 		choice = input.nextInt();
 
-		while (choice != 0) {
+		while (choice != options.size()) {
 			while (true) {
-				if (choice == 1 || choice == 2 || choice == 3 || choice == 4 || choice == 5 || choice == 0) {
+				if (choice > 0 && choice < options.size() || choice == options.size()) {
 					break;
-				}
-				System.out.println("Please enter a valid input.");
-				choice = input.nextInt();
+				} 
+					System.out.println("Please enter a valid input.");
+					choice = input.nextInt();
 			}
 			if (choice == 1) {
 				System.out.println("\n1. Flip Upside Down\n2. Flip Sides\n0. <- Back\n\nEnter your Choice: ");
@@ -100,10 +114,10 @@ public class ICS4U_FP {
 				}
 					if (choice == 1) {
 						ft.verticalFlip(artBoard);
-						System.out.println(ft.toString());
+						System.out.println(ft.toolSound());
 					} else if (choice == 2) {
 						ft.horizontalFlip(artBoard);
-						System.out.println(ft.toString());
+						System.out.println(ft.toolSound());
 					}
 			} else if (choice == 2) {
 				while (true) {
@@ -119,10 +133,10 @@ public class ICS4U_FP {
 				}
 				if (choice == 1) {
 					st.SingleSwap(artBoard);
-					System.out.println(st.toString());
+					System.out.println(st.toolSound());
 				} else if (choice == 2) {
 					st.fullSwap(artBoard);
-					System.out.println(st.toString());
+					System.out.println(st.toolSound());
 				}
 			} else if (choice == 3) {
 				System.out.println(
@@ -138,16 +152,16 @@ public class ICS4U_FP {
 				}
 				if (choice == 1) {
 					rt.replaceSingle(artBoard);
-					System.out.println(rt.toString());
+					System.out.println(rt.toolSound());
 				} else if (choice == 2) {
 					rt.replaceAll(artBoard);
-					System.out.println(rt.toString());
+					System.out.println(rt.toolSound());
 				} else if (choice == 3) {
 					rt.replaceRow(artBoard);
-					System.out.println(rt.toString());
+					System.out.println(rt.toolSound());
 				} else if (choice == 4) {
 					rt.replaceCol(artBoard);
-					System.out.println(rt.toString());
+					System.out.println(rt.toolSound());
 				}
 			} else if (choice == 4) {
 				System.out.println("\n1. Erase Single Character\n2. Erase Entire Image\n3. Erase Entire Row\n4. Erase Entire Column\n0. <- Back\n\nEnter your Choice: ");
@@ -162,16 +176,16 @@ public class ICS4U_FP {
 				}
 				if (choice == 1) {
 					et.eraseSingle(artBoard);
-					System.out.println(et.toString());
+					System.out.println(et.toolSound());
 				} else if (choice == 2) {
 					et.eraseAll(artBoard);
-					System.out.println(et.toString());
+					System.out.println(et.toolSound());
 				} else if (choice == 3) {
 					et.eraseRow(artBoard);
-					System.out.println(et.toString());
+					System.out.println(et.toolSound());
 				} else if (choice == 4) {
 					et.eraseCol(artBoard);
-					System.out.println(et.toString());
+					System.out.println(et.toolSound());
 				}
 			} else if (choice == 5) {
 				System.out.println("1. Sort a Row!\n2. Sort a Column!\n3. Sort all Rows!\n4. Sort all Columns!\n0. <- Back\n\nEnter your Choice:");
@@ -186,30 +200,31 @@ public class ICS4U_FP {
 				}
 				if (choice == 1) {
 					sortt.sortRow(artBoard);
-					System.out.println(sortt.toString());
+					System.out.println(sortt.toolSound());
 				} else if (choice == 2) {
 					sortt.sortCol(artBoard);
-					System.out.println(sortt.toString());
+					System.out.println(sortt.toolSound());
 				} else if (choice == 3) {
 					sortt.sortAllRows(artBoard);
-					System.out.println(sortt.toString());
+					System.out.println(sortt.toolSound());
 				} else if (choice == 4) {
 					sortt.sortAllCols(artBoard);
-					System.out.println(sortt.toString());
+					System.out.println(sortt.toolSound());
 				}
 			}
 			System.out.println("Returning to Main Menu...");
 			writeFile(doodle, artBoard);
 			System.out.println();
 			readFile(doodle, artBoard);
-			optionsDisplay();
+			System.out.println("\n\t------- ARTIST TOOLS -------\n");
+			optionsDisplay(options);
 			System.out.println("Enter a Choice Number: ");
 			choice = input.nextInt();
 		}
-		if (choice == 0) {
+		if (choice == options.size()) {
 			input.close();
-			System.out.println("Thanks for Playing! Here is your final design work!");
-			System.out.println(player.toString());
+			System.out.println("\nThanks for Playing! Here is your final design work!");
+			System.out.println(player.toString() + "\n");
 			readFile(doodle, artBoard);
 			System.out.println("\nPretty Neat, huh?");
 		}
@@ -228,9 +243,9 @@ public class ICS4U_FP {
 			try {
 				reader = new FileReader(file);
 				br = new BufferedReader(reader);
-				for (int i = 0; i < arr.length; i++) { // iterates through rows of array
-					strRows = br.readLine(); // reads each row as a string
-					arr[i] = strRows.toCharArray(); // converts string into char 2D array rows
+				for (int i = 0; i < arr.length; i++) { 			// iterates through rows of array
+					strRows = br.readLine(); 					// reads each row as a string
+					arr[i] = strRows.toCharArray(); 			// converts string into char 2D array rows
 				}
 				br.close();
 				reader.close();
@@ -279,26 +294,24 @@ public class ICS4U_FP {
 		}
 	}
 
-	public static void fillArray(char[][] arr, Scanner input) {
+	public static char[][] fillArray(char[][] arr, Scanner input) {
+		System.out.println("\nPlease fill each row, character by character:");
 		for (int i = 0; i < arr.length; i++) {
-			System.out.println("\nFilling row: " + (i + 1) + "...");
+			System.out.println("Filling row: " + (i + 1));
 			for (int j = 0; j < arr[0].length; j++) {
 				arr[i][j] = input.next().charAt(0);
 			}
 		}
 		System.out.println("\nComplete!");
+		return arr;
 	}
-
 	/**
 	 * prints options display for user pre:none. post: array is printed.
 	 */
-	public static void optionsDisplay() {
-		System.out.println("\n****ARTIST TOOLS****\n" 
-				+ "1. Flipper Tool (Flips Image upside down or on it's side)!\n"
-				+ "2. Swapper Tool (Swap character(s) with another)!\n"
-				+ "3. Replacer Tool (Replace character(s) with characeter of your choosing)!\n"
-				+ "4. Eraser Tool (Erase character(s) in image)!\n"
-				+ "5. Sorter Tool (Groups same characters in rows, columns, or enitre image)!\n" 
-				+ "0. Quit\n");
+	public static void optionsDisplay(ArrayList<String> options) {	
+		for(int i= 0; i < options.size(); i++) {
+			System.out.println("(" + (i+1) + ") " + options.get(i) + " ");
+		}
+		
 	}
 }

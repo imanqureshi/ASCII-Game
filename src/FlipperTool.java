@@ -10,7 +10,11 @@ public class FlipperTool extends Tool {
 	 * tool (lyric) is returned
 	 */
 	String toolSound() {
-		return "I just flipped the switch...Flip Flip";
+		String sound;
+		sound = "____________________________________________";
+		sound += "\n\nI just flipped the switch...Flip, Flip!";
+		sound += "\n____________________________________________";
+		return sound;
 	}
 
 	/**

@@ -8,7 +8,11 @@ public class ReplacerTool extends Tool {
 	}
 	
 	String toolSound() {
-		return "Believe...when I say...I want it replaced!";
+		String sound;
+		sound = "______________________________________________";
+		sound += "\n\nBelieve...when I say...I want it replaced!";
+		sound += "\n______________________________________________";
+		return sound;
 	}
 
 	public char[][] replaceSingle(char[][] arr) {
@@ -25,7 +29,7 @@ public class ReplacerTool extends Tool {
 				System.out.println("Please enter a valid Row.");
 			row = input.nextInt();
 		}
-		System.out.print("\nSelected Row... ");
+		System.out.println("\nSelected Row... ");
 		for (int i = 0; i < arr[0].length; i++) {
 			System.out.print(arr[row - 1][i] + " ");
 		}	

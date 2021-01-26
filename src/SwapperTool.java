@@ -13,7 +13,11 @@ public class SwapperTool extends Tool {
 	 * post: sound of tool (lyric) is returned
 	 */
 	String toolSound() {
-		return "I'll be...switchin the positions for you!";
+		String sound;
+		sound = "_____________________________________________";
+		sound += "\n\nI'll be...switchin the positions for you!";
+		sound += "\n_____________________________________________";
+		return sound;
 	}
 
 	/**
@@ -99,7 +103,7 @@ public class SwapperTool extends Tool {
 				System.out.println("Please enter a valid Row.");
 			row2 = input.nextInt();
 		}
-		System.out.print("\nSelected Row... ");
+		System.out.println("\nSelected Row...");
 		for (int i = 0; i < arr[0].length; i++) {
 			System.out.print(arr[row2 - 1][i] + " ");
 		}		

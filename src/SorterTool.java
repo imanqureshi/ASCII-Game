@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class SorterTool extends Tool {
@@ -8,7 +7,11 @@ public class SorterTool extends Tool {
 	}
 
 	String toolSound() {
-		return "A B C...As easy as 1 2 3";
+		String sound;
+		sound = "____________________________________________";
+		sound += "\n\n\tA B C...As easy as 1 2 3";
+		sound += "\n____________________________________________\n";
+		return sound;
 	}
 
 	public char[][] sortRow(char[][] arr) {
@@ -57,7 +60,7 @@ public class SorterTool extends Tool {
 			for (int i = 0; i < arr.length; i++) {
 				// loop for comparison and swapping
 				for (int j = 0; j < arr.length - i - 1; j++) {
-					if (arr[j][col] > arr[j+1][col]) {
+					if (arr[j][col] < arr[j+1][col]) {
 						// swapping of elements
 						char temp = arr[j][col];
 						arr[j][col] = arr[j+1][col];
@@ -92,7 +95,7 @@ public class SorterTool extends Tool {
 		for (int i = 0; i < arr[0].length; i++) { 	// loops through rows of array
 			for (int j = 0; j < arr.length; j++) { //loops column of array
 				for (int k = 0; k < arr.length - j - 1; k++) {	//loop to compare all elements
-					if (arr[k+1][i] > arr[k][i]) {
+					if (arr[k+1][i] < arr[k][i]) {
 						char temp = arr[k][i];	//swapping
 						arr[k][i] = arr[k+1][i];
 						arr[k+1][i] = temp;
