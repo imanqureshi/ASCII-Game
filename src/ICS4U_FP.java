@@ -23,6 +23,7 @@ public class ICS4U_FP {
 		EraserTool et = new EraserTool("Eraser Tool", "Erase Character(s) in Image");
 		SorterTool sortt = new SorterTool("Sorter Tool", "Group Same Characters in Image");
 		ArrayList<String> options = new ArrayList<String>();
+		String art;
 
 		System.out
 				.println("Welcome to Graphics Jam!\nExplore your graphic designing talents in this music based game!");
@@ -42,8 +43,11 @@ public class ICS4U_FP {
 				choice = input.nextInt();
 			}
 		}
+		System.out.println("What would you like to call your Art?");
+		art = input.next();
+		
 		if (choice == 1) {
-			doodle = new File("././My Graphics Jam - " + player.getName());
+			doodle = new File("././My Graphics Jam - " + art + " by " + player.getName());
 			try {
 				doodle.createNewFile();
 			} catch (IOException e) {
@@ -65,7 +69,7 @@ public class ICS4U_FP {
 		} else {
 			artBoard = new char[12][14];
 
-			doodle = new File("././Graphics Jam - " + player.getName());
+			doodle = new File("././Graphics Jam - " + art + " by " + player.getName());
 			File originalFile = new File("././GraphicsJamDefault");
 
 			if (!doodle.exists()) {
