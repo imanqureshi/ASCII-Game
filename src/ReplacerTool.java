@@ -87,13 +87,7 @@ public class ReplacerTool extends Tool {
 		}
 		System.out.println("What character You Would Like to place into the Image: ");
 		char2 = input.next().charAt(0);
-		while (!charExists(arr, char2)) {
-			System.out.println("Character could not be found. Please try again.");
-			char2 = input.next().charAt(0);
-			if (charExists(arr, char2)) {
-				break;
-			}
-		}
+		
 		for (int i = 0; i < arr.length; i++) {
 			str = String.valueOf(arr[i]);
 			str = (changeXY(str, char1, char2));

@@ -43,11 +43,12 @@ public class ICS4U_FP {
 				choice = input.nextInt();
 			}
 		}
-		System.out.println("What would you like to call your Art?");
+		System.out.println("What Would You Like to Call Your Art?");
 		art = input.next();
 		
 		if (choice == 1) {
 			doodle = new File("././My Graphics Jam - " + art + " by " + player.getName());
+			if (!doodle.exists()) {
 			try {
 				doodle.createNewFile();
 			} catch (IOException e) {
@@ -55,6 +56,9 @@ public class ICS4U_FP {
 				System.err.println("IOException: " + e.getMessage());
 			} finally {
 				System.out.println("New Graphics Board being Created...\n");
+			}
+			} else  {
+				System.out.println("Looks like you've already created an art piece! Let's load it up!");
 			}
 
 			System.out.println("Please enter how many rows you would like your image to be");
