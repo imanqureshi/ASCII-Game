@@ -1,12 +1,22 @@
 import java.util.Scanner;
 
+/**
+ * Iman Qureshi 
+ * January 26 2021 ICS4U 
+ * This program creates the characteristics for a replacer tool.
+ */
 public class ReplacerTool extends Tool {
 
 	/* constructor */
 	public ReplacerTool(String rtname, String func) {
 		super(rtname, func);
 	}
-	
+
+	/**
+	 * returns special sound made by using replacer tool 
+	 * pre: none 
+	 * post: sound of tool (lyric) is returned
+	 */
 	String toolSound() {
 		String sound;
 		sound = "______________________________________________";
@@ -14,7 +24,11 @@ public class ReplacerTool extends Tool {
 		sound += "\n______________________________________________";
 		return sound;
 	}
-
+	/**
+	 * swaps single location of a character with character of users choosing
+	 * pre: none
+	 * post: chosen character is replaced with new character in array
+	 */
 	public char[][] replaceSingle(char[][] arr) {
 		int row, col;
 		Scanner input = new Scanner(System.in);
@@ -32,7 +46,7 @@ public class ReplacerTool extends Tool {
 		System.out.println("\nSelected Row... ");
 		for (int i = 0; i < arr[0].length; i++) {
 			System.out.print(arr[row - 1][i] + " ");
-		}	
+		}
 		System.out.println("\nEnter the COLUMN of the First Character You Would Like to Swap:");
 		col = input.nextInt();
 		while (true) {
@@ -51,7 +65,11 @@ public class ReplacerTool extends Tool {
 
 		return arr;
 	}
-
+	/**
+	 * replaces all locations of a character in image with character of users choosing. 
+	 * pre: none
+	 * post: all locations of a character in image are replaced with users character of choice. 
+	 */
 	public char[][] replaceAll(char[][] arr) {
 		Scanner input = new Scanner(System.in);
 		char char1 = ' ';
@@ -83,7 +101,11 @@ public class ReplacerTool extends Tool {
 		}
 		return arr;
 	}
-
+	/**
+	 * replaces all locations of a character in a string with another
+	 * pre: none
+	 * post: string with replaced characters is returned. 
+	 */
 	public String changeXY(String str, char c1, char c2) {
 		char ch;
 		if (str.length() == 0)
@@ -93,7 +115,11 @@ public class ReplacerTool extends Tool {
 			return c2 + changeXY(str.substring(1), c1, c2);
 		return ch + changeXY(str.substring(1), c1, c2);
 	}
-
+	/**
+	 * replaces entire row of array with character of users choosing. 
+	 * pre: none
+	 * post: all columns in chosen row are replaced with users character of choice. 
+	 */
 	public char[][] replaceRow(char[][] arr) {
 		Scanner input = new Scanner(System.in);
 		int row;
@@ -111,7 +137,7 @@ public class ReplacerTool extends Tool {
 		System.out.print("Row Chosen: ");
 		for (int i = 0; i < arr[0].length; i++) {
 			System.out.print(arr[row - 1][i] + " ");
-		}	
+		}
 
 		System.out.println("\nWhat character You Would Like to place into the Image: ");
 		replacement = input.next().charAt(0);
@@ -121,7 +147,11 @@ public class ReplacerTool extends Tool {
 		}
 		return arr;
 	}
-
+	/**
+	 * replaces entire column of array with character of users choosing. 
+	 * pre: none
+	 * post: all rows in chosen column are replaced with users character of choice. 
+	 */
 	public char[][] replaceCol(char[][] arr) {
 		Scanner input = new Scanner(System.in);
 		int col;
@@ -148,6 +178,5 @@ public class ReplacerTool extends Tool {
 		}
 		return arr;
 	}
-
 
 }

@@ -1,11 +1,22 @@
 import java.util.Scanner;
 
+/**
+ * Iman Qureshi 
+ * January 26 2021 
+ * ICS4U 
+ * This program creates the characteristics for a eraser tool.
+ */
 public class EraserTool extends Tool {
 
+	/*constructor*/
 	public EraserTool(String etName, String func) {
 		super(etName, func);
 	}
-
+	/**
+	 * returns special sound made by using eraser tool
+	 * pre: none 
+	 * post: sound of tool (lyric) is returned
+	 */
 	String toolSound() {
 		String sound;
 		sound = "______________________________________________";
@@ -13,11 +24,15 @@ public class EraserTool extends Tool {
 		sound += "\n______________________________________________";
 		return sound;
 	}
-	
+	/**
+	 * allows user to erase single character from image 
+	 * pre: none
+	 * post: chosen character is replaced with empty space 
+	 */
 	public char[][] eraseSingle(char[][] arr) {
 		int row, col;
 		Scanner input = new Scanner(System.in);
-		
+
 		System.out.println("Enter the ROW of the First Character You Would Like to Erase:");
 		row = input.nextInt();
 		while (true) {
@@ -30,7 +45,7 @@ public class EraserTool extends Tool {
 		System.out.println("\nSelected Row... ");
 		for (int i = 0; i < arr[0].length; i++) {
 			System.out.print(arr[row - 1][i] + " ");
-		}	
+		}
 		System.out.println("\nEnter the COLUMN of the First Character You Would Like to Erase:");
 		col = input.nextInt();
 		while (true) {
@@ -38,15 +53,19 @@ public class EraserTool extends Tool {
 				break;
 			} else
 				System.out.println("Please enter a valid Column.");
-				col = input.nextInt();
+			col = input.nextInt();
 		}
-		System.out.println("Character Chosen: " + arr[row-1][col-1]);
+		System.out.println("Character Chosen: " + arr[row - 1][col - 1]);
 
-		arr[row-1][col-1]  = ' ';
-		
+		arr[row - 1][col - 1] = ' ';
+
 		return arr;
 	}
-	
+	/**
+	 * allows user to erase single row from image 
+	 * pre: none
+	 * post: columns in chosen row are replaced with empty spaces 
+	 */
 	public char[][] eraseRow(char[][] arr) {
 		Scanner input = new Scanner(System.in);
 		int row;
@@ -64,13 +83,17 @@ public class EraserTool extends Tool {
 		System.out.println("\nSelected Row... ");
 		for (int i = 0; i < arr[0].length; i++) {
 			System.out.print(arr[row - 1][i] + " ");
-		}	
+		}
 		for (int i = 0; i < arr[row - 1].length; i++) {
 			arr[row - 1][i] = ' ';
 		}
 		return arr;
 	}
-
+	/**
+	 * allows user to erase single column from image 
+	 * pre: none
+	 * post: rows in chosen column are replaced with empty spaces 
+	 */
 	public char[][] eraseCol(char[][] arr) {
 		Scanner input = new Scanner(System.in);
 		int col;
@@ -95,7 +118,11 @@ public class EraserTool extends Tool {
 		}
 		return arr;
 	}
-	
+	/**
+	 * allows user to erase all characters from image 
+	 * pre: none
+	 * post: whole array is filled with empty spaces
+	 */
 	public char[][] eraseAll(char[][] arr) {
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = 0; j < arr[0].length; j++) {

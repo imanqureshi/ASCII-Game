@@ -1,5 +1,10 @@
 import java.util.Scanner;
-
+/**
+ * Iman Qureshi 
+ * January 26 2021 
+ * ICS4U 
+ * This program creates the characteristics for a swapper tool.
+ */
 public class SwapperTool extends Tool {
 
 	/* constructor */
@@ -8,7 +13,7 @@ public class SwapperTool extends Tool {
 	}
 
 	/**
-	 * returns special sound made by using flipper tool 
+	 * returns special sound made by using swapper tool 
 	 * pre: none 
 	 * post: sound of tool (lyric) is returned
 	 */
